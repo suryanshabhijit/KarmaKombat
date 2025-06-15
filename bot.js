@@ -5,7 +5,7 @@ const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
 
-const { getKarma, modifyKarma } = require('./karmaManager');
+const { getKarma, modifyKarma, loadKarma } = require('./karmaManager');
 
 const duelCooldowns = {};
 
@@ -23,7 +23,7 @@ client.on('messageCreate', async (message) => {
     }
     else if(mentioned && content.includes('--')){
         if(mentioned.id == message.author.id){
-            message.reply("You can't take karma from yourself as well! 🙄"); 
+           return message.reply("You can't take karma from yourself as well! 🙄"); 
         }
         const newKarma = modifyKarma(mentioned.id,-1);
         message.reply(`${mentioned.username} now has ${newKarma} karma ... 😔`);
@@ -31,7 +31,7 @@ client.on('messageCreate', async (message) => {
     }
     else if(content.startsWith('!karma')){
         const user = mentioned || message.author;
-        const karma = getKarma(user.id);
+        const karma = getKarma(user.id) || 0;
         message.reply(`${user.username} has ${karma} karma! ✨`);
     }
     else if(content.startsWith('!leaderboard')){
