@@ -7,7 +7,7 @@ A fun, chaotic karma battle bot for Discord. Praise or punish your friends using
 - Give or take karma: `@user ++` / `@user --`
 - Check karma: `!karma`
 - Leaderboard: `!leaderboard`
-- Duel: `!duel @user` (optional mini-game)
+- Duel: `!duel @user` (mini game)
 
 ### 📦 Setup
 1. Clone the repo
